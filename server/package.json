@@ -4,6 +4,7 @@
   "description": "API server that wraps external file service",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "standard"
   },
   "repository": {
