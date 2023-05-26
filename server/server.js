@@ -1,16 +1,16 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require('express')
+const bodyParser = require('body-parser')
 
-const { HealthRouter } = require('./routes');
+const { HealthRouter } = require('./routes')
 
-const app = express();
+const app = express()
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
-const router = express.Router();
+const router = express.Router()
 
-router.use('/health', HealthRouter);
+router.use('/health', HealthRouter)
 
-app.use('/', router);
+app.use('/', router)
 
-module.exports = app;
+module.exports = app

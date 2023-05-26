@@ -1,5 +1,5 @@
-const HealthRouter = require('./health');
+const HealthRouter = require('./health')
 
 module.exports = {
-  HealthRouter,
-};
+  HealthRouter
+}
