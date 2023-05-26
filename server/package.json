@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "standard"
+    "test": "standard && mocha ./**/*.js --recursive"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,14 @@
   "devDependencies": {
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
+    "nock": "^13.3.1",
     "nodemon": "^2.0.22",
-    "standard": "^17.0.0"
+    "standard": "^17.0.0",
+    "supertest": "^6.3.3"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
   }
 }
