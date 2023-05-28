@@ -12,12 +12,7 @@ const externalApi = axios.create({
  * Returns a list of files in the external service.
  */
 async function getFiles () {
-  let response
-  try {
-    response = await externalApi.get('secret/files')
-  } catch (error) {
-    throw Error(error)
-  }
+  const response = await externalApi.get('secret/files')
 
   const {
     data: { files }

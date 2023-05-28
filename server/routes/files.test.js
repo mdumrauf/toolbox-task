@@ -19,5 +19,16 @@ describe('Files', () => {
 
       expect(body).to.have.property('files').with.lengthOf(3)
     })
+
+    it('fails when external API call is not authorized', (done) => {
+      nock('https://echo-serv.tbxnet.com/v1/')
+        .get('/secret/files')
+        .reply(401)
+
+      request(app)
+        .get('/files/list')
+        .set('Accept', 'application/json')
+        .expect(500, done)
+    })
   })
 })
