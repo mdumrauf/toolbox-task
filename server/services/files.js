@@ -9,6 +9,17 @@ const externalApi = axios.create({
   headers: { Authorization: `Bearer ${process.env.SERVICE_AUTH_TOKEN}` }
 })
 
+const VALID_LINE_ATTRIBUTES = ['text', 'number', 'hex']
+
+/**
+ * Validates if given {line} object is valid.
+ * This means that it contains all {VALID_LINE_ATTRIBUTES}.
+ *
+ * @param {Object} line
+ * @returns true or false
+ */
+const isValidLine = (line) => VALID_LINE_ATTRIBUTES.every(attr => Object.keys(line).includes(attr))
+
 /**
  * Returns a list of files in the external service.
  */
@@ -58,10 +69,11 @@ async function getFilesWithContent () {
     }
 
     const content = await csv(csvParserOpts).fromString(csvContent)
+    const filteredLines = content.filter((line) => isValidLine(line))
 
     const fullFile = {
       file,
-      lines: content
+      lines: filteredLines
     }
     filesWithContent.push(fullFile)
   }
