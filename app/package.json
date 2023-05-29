@@ -2,9 +2,18 @@
   "name": "app",
   "version": "0.1.0",
   "description": "Frontend app that lists and displays external files",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "13.4.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "repository": {
     "type": "git",
