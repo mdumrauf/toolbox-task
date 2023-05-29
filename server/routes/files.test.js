@@ -60,6 +60,28 @@ describe('Files', () => {
       expect(body[1].lines).to.have.lengthOf(1)
     })
 
+    it('lists files with their content as lines ignoring external API errors', async () => {
+      const mockApi = nock('https://echo-serv.tbxnet.com/v1/')
+      mockApi.get('/secret/files')
+        .reply(200, {
+          files: ['file1.csv', 'file2.csv']
+        })
+      // file1.csv will fail.
+      mockApi.get('/secret/file/file1.csv').reply(500)
+      mockApi.get('/secret/file/file2.csv')
+        .reply(200,
+          'file,text,number,hex\n' +
+          'file2.csv,Lorem,43,AAdddasdsAAA'
+        )
+
+      const { body } = await request(app)
+        .get('/files/data')
+        .set('Accept', 'application/json')
+
+      expect(body).to.have.lengthOf(1)
+      expect(body[0].lines).to.have.lengthOf(1)
+    })
+
     it('fails when external API call is not authorized', (done) => {
       nock('https://echo-serv.tbxnet.com/v1/')
         .get('/secret/files')
