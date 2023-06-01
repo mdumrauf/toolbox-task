@@ -7,7 +7,7 @@ const { FilesRouter, HealthRouter } = require('./routes')
 const app = express()
 
 const corsOptions = {
-  origin: ['http://localhost:3000'],
+  origin: ['http://localhost:3000', 'https://toolbox-task.vercel.app'],
   optionsSuccessStatus: 200
 }
 
