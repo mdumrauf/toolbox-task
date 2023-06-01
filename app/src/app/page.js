@@ -7,7 +7,7 @@ function Home () {
   const [files, setFiles] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3001/files/data')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/files/data`)
       .then((res) => res.json())
       .then((data) => {
         setFiles(data)
